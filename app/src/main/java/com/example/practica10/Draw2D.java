@@ -19,9 +19,8 @@ public class Draw2D extends View {
     public Draw2D(Context context) {
         super(context);
 
-        // Выводим значок из ресурсов
         Resources res = this.getResources();
-        mBitmap = BitmapFactory.decodeResource(res, R.drawable.cat_bottom);
+        mBitmap = BitmapFactory.decodeResource(res, R.drawable.cat);
     }
 
     @Override
@@ -31,55 +30,46 @@ public class Draw2D extends View {
         int width = canvas.getWidth();
         int height = canvas.getHeight();
 
-        // стиль Заливка
-        mPaint.setStyle(Paint.Style.FILL);
 
-        // закрашиваем холст белым цветом
+        mPaint.setStyle(Paint.Style.FILL);
         mPaint.setColor(Color.WHITE);
         canvas.drawPaint(mPaint);
 
-        // Рисуем жёлтый круг
+
         mPaint.setAntiAlias(true);
         mPaint.setColor(Color.YELLOW);
-        // canvas.drawCircle(950, 30, 25, mPaint);
         canvas.drawCircle(width - 30, 30, 25, mPaint);
 
-        // Рисуем зелёный прямоугольник
-        mPaint.setColor(Color.GREEN);
-        //  canvas.drawRect(20, 650, 950, 680, mPaint);
-        canvas.drawRect(0, canvas.getHeight() - 30, width, height, mPaint);
 
-        // Рисуем текст
+        mPaint.setColor(Color.GREEN);
+        canvas.drawRect(0, height - 30, width, height, mPaint);
+
+
         mPaint.setColor(Color.BLUE);
         mPaint.setStyle(Paint.Style.FILL);
         mPaint.setAntiAlias(true);
         mPaint.setTextSize(32);
-        //  canvas.drawText("Лужайка только для котов", 30, 648, mPaint);
         canvas.drawText("Лужайка только для котов", 30, height - 32, mPaint);
 
-        // Текст под углом
-        // int x = 810;
+
         int x = width - 170;
         int y = 190;
-
         mPaint.setColor(Color.GRAY);
         mPaint.setTextSize(27);
         String beam = "Лучик солнца!";
 
         canvas.save();
-        // Создаём ограничивающий прямоугольник для наклонного текста
-        // поворачиваем холст по центру текста
+
         canvas.rotate(-45, x + mRect.exactCenterX(), y + mRect.exactCenterY());
-
-        // Рисуем текст
-        mPaint.setStyle(Paint.Style.FILL);
         canvas.drawText(beam, x, y, mPaint);
-
-        // восстанавливаем холст
         canvas.restore();
 
-        // Выводим изображение
-        // canvas.drawBitmap(mBitmap, 450, 530, mPaint);
-        canvas.drawBitmap(mBitmap, width - mBitmap.getWidth(), height - mBitmap.getHeight() - 10, mPaint);
+
+        if (mBitmap != null) {
+            canvas.drawBitmap(mBitmap,
+                    width - mBitmap.getWidth(),
+                    height - mBitmap.getHeight() - 10,
+                    mPaint);
+        }
     }
 }
