@@ -10,11 +10,13 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.view.View;
 
+import androidx.annotation.NonNull;
+
 public class Draw2D extends View {
 
-    private Paint mPaint = new Paint();
-    private Rect mRect = new Rect();
-    private Bitmap mBitmap;
+    private final Paint mPaint = new Paint();
+    private final Rect mRect = new Rect();
+    private final Bitmap mBitmap;
 
     public Draw2D(Context context) {
         super(context);
@@ -24,11 +26,11 @@ public class Draw2D extends View {
     }
 
     @Override
-    protected void onDraw(Canvas canvas) {
+    protected void onDraw(@NonNull Canvas canvas) {
         super.onDraw(canvas);
 
-        int width = canvas.getWidth();
-        int height = canvas.getHeight();
+        int width = getWidth();
+        int height = getHeight();
 
 
         mPaint.setStyle(Paint.Style.FILL);
